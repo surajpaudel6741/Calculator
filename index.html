@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    
+    *:focus {
+        outline: none;
+    }
+    
+    body {
+        background-color: rgb(164, 162, 162);
+    }
+    
+    .shell {
+        background: rgb(255, 255, 255);
+        background: linear-gradient(126deg, rgba(255, 255, 255, 1) 0%, rgba(154, 149, 149, 1) 0%, rgba(175, 180, 189, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(172, 172, 172, 1) 23%, rgba(105, 101, 101, 0.981127485173757) 100%);
+        height: 400px;
+        width: 400px;
+        border: 5px inset rgb(82, 82, 82);
+        border-radius: 20px;
+        margin: 50px auto;
+    }
+    
+    .screen {
+        border: none;
+        padding: 5px 10px;
+        width: 350px;
+        height: 100px;
+        background: rgba(1, 255, 1, 0.458);
+        outline: 5px inset rgb(0, 201, 0);
+        display: block;
+        margin: 20px auto;
+        text-align: right;
+        font-size: 25px;
+        display: grid;
+    }
+    
+    .expression {
+        display: block;
+        /* border: 1px solid black; */
+        margin-top: 15px;
+    }
+    
+    .exp {
+        border: none;
+        background: transparent;
+        text-align: right;
+        height: 100%;
+        font-size: 28px;
+        width: 100%;
+    }
+    
+    .line {
+        width: 300px;
+        margin: auto;
+    }
+    
+    .text {
+        font-size: 32px;
+    }
+    
+    .buttons {
+        height: 400px;
+        width: 330px;
+        padding: 5px;
+        margin: 10px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .num-buttons {
+        height: 200px;
+        width: 230px;
+    }
+    
+    .func-buttons {
+        height: 200px;
+        width: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-right: 5px;
+    }
+    
+    .button {
+        border: none;
+        font-size: 16px;
+        padding: 5px 20px;
+        margin: 10px;
+        background: linear-gradient(312deg, rgba(255, 255, 255, 1) 0%, rgba(154, 149, 149, 1) 0%, rgba(175, 180, 189, 1) 0%, rgba(196, 241, 251, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(197, 198, 198, 0.981127485173757) 100%);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom: 4px solid gray;
+        border-right: 3px solid gray;
+        transition: background 5s;
+    }
+    
+    .button:active {
+        background: linear-gradient(126deg, rgba(255, 255, 255, 1) 0%, rgba(154, 149, 149, 1) 0%, rgba(175, 180, 189, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(120, 119, 119, 0.981127485173757) 100%);
+    }
+    
+    .fbutton {
+        margin: 0;
+        margin-top: 5px;
+    }
+    
+    .reset {
+        border: none;
+        display: block;
+        height: 100px;
+        width: 100px;
+        margin: auto;
+        border-radius: 100%;
+        background: rgb(255, 255, 255);
+        background: linear-gradient(354deg, rgba(255, 255, 255, 1) 0%, rgba(154, 149, 149, 1) 0%, rgba(175, 180, 189, 1) 0%, rgba(196, 241, 251, 1) 0%, rgba(250, 0, 0, 1) 0%, rgba(127, 70, 70, 0.981127485173757) 100%);
+        border-right: 5px solid white;
+        border-bottom: 5px solid white;
+        outline: 10px solid red;
+        font-size: 20px;
+        font-weight: 900;
+    }
+    
+    .reset:active {
+        background-color: red;
+        outline: rgb(5, 1, 1);
+        transition: 2s;
+    }
+</style>
+
+<body>
+    <div class="shell">
+        <div placeholder="CALCULATOR" class="screen">
+            <div class="expression-box" id="expression-box">
+                <span class="expression text" id="expression">
+                    <input type="text" maxlength="20" class="exp" id="exp" placeholder="0" onkeydown="return /^[0-9]*( ){0,}([-+*/]( ){0,}[0-9]*( ){0,})*$/.test(event.key) || event.keyCode == 8 " >
+                </span>
+            </div>
+            <div class="solution-box" id="solution-box">
+                <span class="solution" id="solution"> ans</span>
+            </div>
+        </div>
+        <hr class="line">
+        <div class="buttons">
+            <div class="num-buttons">
+                <button class="button" id="1" value="1" onclick="document.querySelector('#exp').value+='1'">1</button>
+                <button class="button" id="2" value="2" onclick="document.querySelector('#exp').value+='2'">2</button>
+                <button class="button" id="3" value="3" onclick="document.querySelector('#exp').value+='3'">3</button>
+                <button class="button" id="4" value="4" onclick="document.querySelector('#exp').value+='4'">4</button>
+                <button class="button" id="5" value="5" onclick="document.querySelector('#exp').value+='5'">5</button>
+                <button class="button" id="6" value="6" onclick="document.querySelector('#exp').value+='6'">6</button>
+                <button class="button" id="7" value="7" onclick="document.querySelector('#exp').value+='7'">7</button>
+                <button class="button" id="8" value="8" onclick="document.querySelector('#exp').value+='8'">8</button>
+                <button class="button" id="9" value="9" onclick="document.querySelector('#exp').value+='9'">9</button>
+                <button class="button" id="0" value="0" onclick="document.querySelector('#exp').value+='0'">0</button>
+                <button class="button" id="clr" value="←" onclick="backslash();">←</button>
+                <button type="submit" class="button" id="=" value="=" onclick="calculation()">=</button>
+            </div>
+            <div class="func-buttons">
+                <button class="button fbutton" id="+" value="+" onclick="document.querySelector('#exp').value+='+'">+</button>
+                <button class="button fbutton" id="-" value="-" onclick="document.querySelector('#exp').value+='-'">-</button>
+                <button class="button fbutton" id="/" value="/" onclick="document.querySelector('#exp').value+='/'">/</button>
+                <button class="button fbutton" id="*" value="*" onclick="document.querySelector('#exp').value+='*'">*</button>
+
+            </div>
+        </div>
+    </div>
+    <button class="reset" id="reset-screen" onclick="document.getElementById('exp').value=''">Reset</button>
+    <script>
+        const backslash = () => {
+            document.querySelector('#exp').value = document.querySelector('#exp').value.slice(0, -1);
+        }
+        const calculation = () => {
+            const val = document.getElementById('exp').value;
+            const values = val.split(/[-+*/]/);
+            const oprands = val.split(/[0-9]/);
+            let c = parseInt('0');
+            let a = parseInt(values[0]);
+            for (let i = 0; i < values.length; i++) {
+
+                c = c + values[i].length;
+                let chars = val.charAt(c);
+                if (chars == '+') {
+                    a = a + parseInt(values[i + 1]);
+                    c++;
+                } else if (chars == '-') {
+                    a = a - parseInt(values[i + 1]);
+                    c++;
+                } else if (chars == '*') {
+                    a = a * parseInt(values[i + 1]);
+                    c++;
+                } else if (chars == '/') {
+                    a = a / parseInt(values[i + 1]);
+                    c++;
+                }
+
+            }
+            document.getElementById('solution').innerText = a;
+
+        }
+    </script>
+</body>
+
+</html>
